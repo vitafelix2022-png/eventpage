@@ -183,4 +183,39 @@ const HomePage: React.FC<HomePageProps> = ({ onNavigate }) => {
           >
             {visibleProducts.map((product, idx) => (
               <div 
-                
+                key={`${product.id}-${idx}`} 
+                // Each item is exactly 1/3 width minus the gap distribution.
+                // Or simply: min-width: calc(33.333% - 1rem) for gap-6 (1.5rem)
+                className="min-w-[calc(33.333%-1rem)] flex-shrink-0"
+              >
+                <ProductCard product={product} variant="grid" />
+              </div>
+            ))}
+          </div>
+        </div>
+
+        {/* Simple Centered Controls */}
+        <div className="flex justify-center gap-4 mt-10">
+          <button 
+            onClick={handlePrev}
+            disabled={isAnimating}
+            className="w-12 h-12 flex items-center justify-center bg-white dark:bg-white/10 border border-secondary dark:border-gray-600 rounded-full shadow-md text-text-primary dark:text-white hover:bg-primary hover:text-white hover:border-primary hover:scale-110 active:scale-95 disabled:opacity-50 disabled:cursor-not-allowed transition-all"
+            aria-label="Previous Products"
+          >
+            <span className="material-symbols-outlined text-2xl">chevron_left</span>
+          </button>
+          <button 
+            onClick={handleNext}
+            disabled={isAnimating}
+            className="w-12 h-12 flex items-center justify-center bg-white dark:bg-white/10 border border-secondary dark:border-gray-600 rounded-full shadow-md text-text-primary dark:text-white hover:bg-primary hover:text-white hover:border-primary hover:scale-110 active:scale-95 disabled:opacity-50 disabled:cursor-not-allowed transition-all"
+             aria-label="Next Products"
+          >
+            <span className="material-symbols-outlined text-2xl">chevron_right</span>
+          </button>
+        </div>
+      </section>
+    </div>
+  );
+};
+
+export default HomePage;
